@@ -1,0 +1,27 @@
+<ConfirmDialog>
+    orientation: "vertical"
+    spacing: 5
+    size_hint_y: None
+    height: "190dp"
+
+    MDLabel:
+        text: 'Select payment method'
+        halign: 'center'
+        text_color: 1, 1, 1, 1
+        size_hint_x: None
+        pos_hint: {'center_x': 0.5}
+    MDRectangleFlatButton:
+        id: _mpesa_button
+        text: 'Mpesa'
+        pos_hint: {'center_x': 0.5}
+        on_release: app.payment_setter('Mpesa'.lower())
+    MDRectangleFlatButton:
+        id: _cash_button
+        text: 'Cash'
+        pos_hint: {'center_x': 0.5}
+        on_release: app.payment_setter('Cash'.lower())
+    MDRectangleFlatButton:
+        id: _other_button
+        text: 'Other'
+        pos_hint: {'center_x': 0.5}
+        on_release: app.payment_setter('Other'.lower())

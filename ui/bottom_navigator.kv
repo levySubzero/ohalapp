@@ -1,0 +1,64 @@
+<NavBar@MCard>:
+    id: _bar
+    spacing: 38
+    size_hint: 1, 0.095
+    pos_hint: {'y': 0, 'x': 0}
+    #size: "200dp", "100dp"
+    # size_hint_y: None
+    # height: "86dp"
+    # padding: "4dp"
+    md_bg_color: app.nav_color
+
+    MDBoxLayout:
+        spacing: "15dp"
+        padding: ["10dp", "5dp", "10dp", "5dp"]
+
+        # MDRaisedButton:
+        #     text_color: [1, 1, 1, 1]
+        #     md_bg_color: [0, 0, 0, 1]
+        #     size_hint: 0.23, 0.8
+        #     pos_hint: {'center_y': 0.5}
+        #     text: 'Home'
+        #     halign: 'center'
+        #     on_press: app.change_screen(app.screens[0])
+
+        MDRaisedButton:
+            text_color: [1, 1, 1, 1]
+            md_bg_color: [0, 0, 0, 1]
+            size_hint: 0.23, 0.8
+            pos_hint: {'center_y': 0.5}
+            text: 'Sell'
+            halign: 'center'
+            on_press: app.sell_press()
+            
+        MDRaisedButton:
+            text_color: [1, 1, 1, 1]
+            md_bg_color: [0, 0, 0, 1]
+            size_hint: 0.23, 0.8
+            pos_hint: {'center_y': 0.5}
+            text: 'Sales'
+            halign: 'center'
+            on_press: app.change_screen(app.screens[4])
+            
+        MDRaisedButton:
+            text_color: [1, 1, 1, 1]
+            md_bg_color: [0, 0, 0, 1]
+            size_hint: 0.23, 0.8
+            pos_hint: {'center_y': 0.5}
+            text: 'Stock'
+            halign: 'center'
+            on_press: app.stock_press()
+            icon: 'store'
+
+
+
+<NavIcon@MDIconButton>:
+    pos_hint: {'center_y': .5, 'center_x': .5}
+    theme_text_color: 'Custom'
+    font_size: 24
+    icon_color: [1, 1, 1, 1]
+    #size_hint_x: 0.25
+
+
+        
+

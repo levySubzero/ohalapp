@@ -1,0 +1,104 @@
+<RegisterScreen>:
+    name: "register"
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: app.theme_cls.bg_normal
+        pos_hint: {'top': 1}
+        ScrollView:
+            do_scroll_y: True
+            effect_cls: 'ScrollEffect'
+            bar_width: 0
+            MDBoxLayout:
+                adaptive_height: True
+                orientation: "vertical"
+                pos_hint: {'top':1, 'x': 0}
+
+                MDLabel:
+                    text: 'Create account'
+                    halign: 'center'
+                    #size: self.texture_size
+                    size_hint_y: None
+                    #size_hint_x: None
+                    height: 30
+                    pos_hint: {'top':1, 'x': 0}
+                    font_size: 18
+                    color: app.theme_cls.opposite_bg_normal
+
+                MDTextField:
+                    id: _biz_id
+                    hint_text: "Business name"
+                    required: True
+                    icon_right: "account-box"
+                    write_tab: False
+                    helper_text_mode: "on_error"
+                    helper_text: "This field is required"
+                    on_text_validate:
+
+
+
+                MDTextField:
+                    id: _user_name
+                    hint_text: "Username"
+                    required: True
+                    icon_right: "account"
+                    write_tab: False
+                    helper_text_mode: "on_error"
+                    helper_text: "This field is required"
+                    on_text_validate:
+
+
+                MDTextField:
+                    id: _phone_no
+                    hint_text: "Phone number"
+                    required: True
+                    icon_right: "phone"
+                    write_tab: False
+                    helper_text_mode: "on_error"
+                    helper_text: "This field is required"
+                    on_text_validate:
+
+
+                MDTextField:
+                    id: _email
+                    hint_text: "Email"
+                    required: True
+                    icon_right: "email"
+                    write_tab: False
+                    helper_text_mode: "on_error"
+                    helper_text: "This field is required"
+                    on_text_validate:
+
+
+                MDTextField:
+                    id: _password
+                    hint_text: "Password"
+                    required: True
+                    icon_right: "lock"
+                    write_tab: False
+                    password: True
+                    helper_text_mode: "on_error"
+                    helper_text: "This field is required"
+                    on_text_validate:
+
+                MDTextField:
+                    id: _con_password
+                    hint_text: "Confirm Password"
+                    required: True
+                    icon_right: "lock"
+                    write_tab: False
+                    password: True
+                    helper_text_mode: "on_error"
+                    helper_text: "This field is required"
+                    on_text_validate:
+
+
+        Button:
+            id: register_btn
+            size_hint: .5, .1
+            text: "Register"
+            pos_hint: {'center_x': .5, 'center_y': 0.3}
+            disabled: not _password.text == _con_password.text
+            on_release:
+                app.details_account()
+
+

@@ -1,0 +1,97 @@
+<SellBrandsScreen>:
+
+    MDFloatLayout:
+        size_hint: 1, 1
+        md_bg_color: [0, 0, 0, 1]
+
+        MCard:
+            id: _bar
+            padding: [0, 0, 0, 0]
+            size_hint: 1, 0.1
+            pos_hint: {'top': 1, 'x': 0}
+            md_bg_color: app.nav_color
+
+            MDIconButton:
+                icon: 'arrow-left'
+                theme_text_color: 'Custom'
+                text_color: app.theme_cls.opposite_bg_normal
+                user_font_size: 18
+                adaptive_size: True
+                size: 30, 30
+                padding: 0
+                pos_hint: {'center_y':.5, 'x': 0}
+                on_press: app.win_man.switch_to(app.screens[1])
+
+            MDLabel:
+                text: 'Select Product'
+                halign: 'left'
+                adaptive_size: True
+                height: _bar.height
+                font_size: 24
+                text_color: [1, 1, 1, 1]
+
+            MDFloatLayout:
+
+                MDIconButton:
+                    id: _cart_butt
+                    icon: 'cart'
+                    #text: app.cart_text
+                    halign: 'right'
+                    adaptive_size: True
+                    #size_hint: 1, 1
+                    #size_hint_x: None
+                    #height: 30
+                    #width: 40
+                    pos_hint: {'right': 1, 'center_y': .5}
+                    font_size: 20
+                    color: app.theme_cls.opposite_bg_normal
+                    on_press: app.view_cart(root)
+
+        MCard:
+            id: _mc
+            size_hint: 1, 0.795
+            pos_hint: {'top': 0.895, 'x': 0}
+            md_bg_color: [1, 0.99, 0.98, 0.94]
+
+            MDFloatLayout:
+                id: _fl
+                size_hint: None, None
+                size: _mc.size
+
+                MDFloatLayout:
+                    id: _mdfl
+                    size_hint: 1, 1
+                    pos_hint: {'top': 1}
+                    margin: ["10dp", "10dp", "10dp", 0]                    
+
+                    ScrollView:
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        size_hint: 1, None
+                        pos_hint: {'top': 0.97}
+                        size: _mdfl.width, _mdfl.height
+
+                        MDStackLayout:
+                            id: _brands_list
+                            size_hint_y: None
+                            spacing: 15
+                            pos_hint: {'top': 1}
+                            padding: ["15dp", 0, "15dp", 0]
+
+
+
+                # MDBoxLayout:
+                #     size: _fl.size
+                #     orientation: 'vertical'
+                #     pos_hint: {'top': 1}
+                #     padding: ["20dp", "10dp", "10dp", 0]
+
+                #     MDStackLayout:
+                #         id: _brands_list
+                #         spacing: 15
+
+        NavBar:
+            one: [1, 1, 1, 1]
+
+
+ 

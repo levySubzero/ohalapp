@@ -1,0 +1,61 @@
+<StockUpdateScreen>:
+
+    MDFloatLayout:
+        size_hint: 1, 1
+        md_bg_color: [0, 0, 0, 1]
+
+        MCard:
+            id: _bar
+            padding: [0, 0, 0, 0]
+            size_hint: 1, 0.1
+            pos_hint: {'top': 1, 'x': 0}
+            md_bg_color: app.nav_color
+            
+            MDIconButton:
+                icon: 'arrow-left'
+                theme_text_color: 'Custom'
+                text_color: app.theme_cls.opposite_bg_normal
+                user_font_size: 18
+                adaptive_size: True
+                size: 30, 30
+                padding: 0
+                pos_hint: {'center_y':.5, 'x': 0}
+                on_press: app.win_man.switch_to(app.screens[4])
+
+            MDLabel:
+                id: _sales_item_title
+                text: ''
+                halign: 'left'
+                adaptive_size: True
+                height: _bar.height
+                font_size: 24
+    
+        MCard:
+            id: _mc
+            size_hint: 1, 0.795
+            pos_hint: {'top': 0.895, 'x': 0}
+            md_bg_color: [1, 0.99, 0.98, 0.94]
+
+            MDFloatLayout:
+                id: _fl
+                size_hint: None, None
+                size: _mc.size
+
+                MDRectangleFlatButton:
+                    text: 'Update'
+                    pos_hint: {'center_x': 0.5, 'top': 0.95}
+                    size_hint: None, 0.5
+                    width: 160
+                    on_release: app.update_stock_form()
+
+                MDBoxLayout:
+                    id: _table
+                    size: _fl.size
+                    orientation: 'vertical'
+                    pos_hint: {'top': 1}
+                    padding: 10
+
+            
+
+    NavBar:
+        one: [1, 1, 1, 1]

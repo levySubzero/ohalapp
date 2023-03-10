@@ -1,0 +1,115 @@
+<ViewStockScreen>:
+
+    MDFloatLayout:
+        size_hint: 1, 1
+        md_bg_color: [0, 0, 0, 1]
+
+        MCard:
+            id: _bar
+            padding: [0, 0, 0, 0]
+            size_hint: 1, 0.1
+            pos_hint: {'top': 1, 'x': 0}
+            md_bg_color: app.nav_color
+
+            MDIconButton:
+                icon: 'arrow-left'
+                theme_text_color: 'Custom'
+                text_color: app.theme_cls.opposite_bg_normal
+                user_font_size: 18
+                adaptive_size: True
+                size: 30, 30
+                padding: 0
+                pos_hint: {'center_y':.5, 'x': 0}
+                on_press: app.win_man.switch_to(app.screens[1])
+
+            MDLabel:
+                text: 'Inventory'
+                halign: 'left'
+                adaptive_size: True
+                height: _bar.height
+                font_size: 24
+                text_color: [1, 1, 1, 1]
+
+            
+        MCard:
+            id: _mc
+            size_hint: 1, 0.795
+            pos_hint: {'top': 0.9, 'x': 0}
+            md_bg_color: [1, 0.99, 0.98, 0.94]
+
+            MDFloatLayout:
+                id: _fl
+                size_hint: None, None
+                size: _mc.size
+
+                MDBoxLayout:
+                    size: _fl.size
+                    orientation: 'vertical'
+                    pos_hint: {'top': 1}
+                    padding: 10
+                    spacing: 10
+
+                    MDRaisedButton:
+                        text_color: [0, 0, 0, 1]
+                        on_release: app.clear_records_dialogs(table='stock')
+                        size_hint: 0.4, 0.08
+                        pos_hint: {'top': 0.97, 'center_x': .5}
+                        md_bg_color: [1, 0, 0, 1]
+                        text: 'Clear Cart'
+                        font_size: "20sp"
+
+                    RecycleView:
+                        id: _fl
+                        key_viewclass: 'viewclass'
+                        key_size: 'height'
+                        # pos_hint: {'top': 0.86, 'center_x': .5}
+                        # size_hint: 1, 0.86
+
+                        RecycleBoxLayout:
+                            padding: dp(25)
+                            spacing: dp(25)
+                            default_size: None, dp(55)
+                            default_size_hint: 1, None
+                            size_hint_y: None
+                            height: self.minimum_height
+                            orientation: 'vertical'
+
+
+
+            # MDFloatLayout:
+            #     size_hint: 1, 1
+
+            #     MDFloatLayout:
+            #         id: _fl
+            #         size_hint: 1, 0.9
+            #         pos_hint: {'top': 1, 'x': 0}
+
+            #     MDBoxLayout:
+            #         size_hint: 1, 0.1
+            #         pos_hint: {'top': 0.1}
+            #         spacing: 10
+            #         padding: ["10dp", 0, "8dp", 0]
+
+            #         MDRaisedButton:
+            #             text_color: [0, 0, 0, 1]
+            #             on_release: app.item_delete_stock()
+            #             size_hint: 0.4, 0.7
+            #             pos_hint: {'center_y': .7, 'center_x': .5}
+            #             md_bg_color: [1, 0, 0, 1]
+            #             text: 'Delete selection'
+            #             font_size: "20sp"
+                    
+            #         MDRaisedButton:
+            #             text_color: [0, 0, 0, 1]
+            #             on_release: app.clear_records_dialogs(table='stock')
+            #             size_hint: 0.4, 0.7
+            #             pos_hint: {'center_y': .7, 'center_x': .5}
+            #             md_bg_color: [1, 0, 0, 1]
+            #             text: 'Clear Cart'
+            #             font_size: "20sp"
+
+        NavBar:
+            one: [1, 1, 1, 1]
+
+
+ 

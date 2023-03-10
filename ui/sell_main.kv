@@ -1,0 +1,62 @@
+<SellMScreen>:
+
+    MDFloatLayout:
+        size_hint: 1, 1
+        md_bg_color: [0, 0, 0, 1]
+
+        MCard:
+            id: _bar
+            padding: [20, 0, 0, 0]
+            size_hint: 1, 0.1
+            pos_hint: {'top': 1, 'x': 0}
+            md_bg_color: app.nav_color
+            
+            MDLabel:
+                text: 'Select Category'
+                halign: 'center'
+                adaptive_size: True
+                height: _bar.height
+                font_size: 24
+                text_color: [1, 1, 1, 1]
+
+        MCard:
+            id: _mc
+            size_hint: 1, 0.795
+            pos_hint: {'top': 0.895, 'x': 0}
+            md_bg_color: [1, 0.99, 0.98, 0.94]
+
+            MDFloatLayout:
+                id: _fl
+                size_hint: None, None
+                size: _mc.size
+
+                # MDBoxLayout:
+                #     size: _fl.size
+                #     orientation: 'vertical'
+                #     pos_hint: {'top': 1}
+                #     padding: ["20dp", 0, "0dp", 0]                    
+
+                MDFloatLayout:
+                    id: _mdfl
+                    size_hint: 1, 1
+                    pos_hint: {'top': 0.97}
+                    padding: ["50dp", "10dp", "10dp", 0]                    
+
+                    ScrollView:
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        size_hint: 1, None
+                        pos_hint: {'top': 1}
+                        size: _mdfl.width, _mdfl.height
+
+                        MDStackLayout:
+                            id: _cat_list
+                            size_hint_y: None
+                            spacing: 15
+                            pos_hint: {'top': 1}
+                            padding: ["15dp", 0, "15dp", 0]
+
+        NavBar:
+            one: [1, 1, 1, 1]
+
+

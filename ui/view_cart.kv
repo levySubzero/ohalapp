@@ -1,0 +1,170 @@
+<ViewCartScreen>:
+
+    MDFloatLayout:
+        size_hint: 1, 1
+        md_bg_color: [0, 0, 0, 1]
+
+        MCard:
+            id: _bar
+            padding: [0, 0, 0, 0]
+            size_hint: 1, 0.1
+            pos_hint: {'top': 1, 'x': 0}
+            md_bg_color: app.nav_color
+
+            MDIconButton:
+                icon: 'arrow-left'
+                theme_text_color: 'Custom'
+                text_color: app.theme_cls.opposite_bg_normal
+                user_font_size: 18
+                adaptive_size: True
+                size: 30, 30
+                padding: 0
+                pos_hint: {'center_y':.5, 'x': 0}
+                on_press: app.win_man.switch_to(app.win_man.screens[2])
+
+            MDLabel:
+                text: 'Cart'
+                halign: 'left'
+                adaptive_size: True
+                height: _bar.height
+                font_size: 24
+                text_color: [1, 1, 1, 1]
+
+        MCard:
+            id: _mc
+            size_hint: 0.65, 0.8
+            pos_hint: {'top': 0.9, 'x': 0}
+
+            MDFloatLayout:
+                id: _cart_area
+                pos_hint: {'top': 1}
+                size: _mc.size
+                md_bg_color: [1, 0.99, 0.98, 0.94]
+
+                MDFloatLayout:
+                    id: _cart_float
+                    pos_hint: {'top': 1}
+                    size_hint: 1, 0.8
+
+                MDBoxLayout:
+                    size_hint: 1, 0.18
+                    pos_hint: {'top': 0.18, 'x': 0}
+                    md_bg_color: [0.8, 0.99, 0.98, 0.94]
+                    padding: ["8dp", 0, "8dp", 0]
+                    spacing: 5
+                    orientation: 'horizontal'
+
+                    MDRaisedButton:
+                        text_color: [1, 1, 1, 1]
+                        on_release: app.sell_cart_dialog()
+                        # size_hint: 0.28, 0.7
+                        pos_hint: {'center_y': .5}
+                        md_bg_color: [0, 1, 0, 1]
+                        text: 'Sell Cart'
+                        font_size: "20sp"
+
+                    MDRaisedButton:
+                        text_color: [1, 1, 1, 1]
+                        on_release: app.remove_cart(root)
+                        # size_hint: 0.28, 0.7
+                        pos_hint: {'center_y': .5}
+                        md_bg_color: [1, 0, 0, 1]
+                        text: 'Remove Selected'
+                        font_size: "20sp"
+
+                    MDRaisedButton:
+                        text_color: [1, 1, 1, 1]
+                        on_release: app.clear_cart_dialog()
+                        # size_hint: 0.28, 0.7
+                        pos_hint: {'center_y': .5}
+                        md_bg_color: [0.9, 0.1, 0.2, 1]
+                        text: 'Clear Cart'
+                        font_size: "20sp"
+                        
+
+        MCard:
+            id: _mc2
+            size_hint: 0.33, 0.8
+            pos_hint: {'top': 0.9, 'x': 0.659}
+            md_bg_color: [1, 0.99, 0.98, 0.94]
+
+            MDFloatLayout:
+                size_hint: None, None
+                size: _mc2.size
+                md_bg_color: [0, 0, 0, 1]
+
+                MDFloatLayout:
+                    id: _balance_sec
+                    size_hint: 1, 0.4
+                    pos_hint: {'top': 1, 'x': 0}
+                    md_bg_color: [1, 0.99, 0.98, 0.94]
+
+                    MDFloatLayout:
+                        size_hint: 1, 0.25
+                        pos_hint: {'top': 0.98, 'center_x': 0.5}
+
+                        MDLabel:
+                            id: _total
+                            pos_hint: {'top': 0.95, 'center_x': 0.5}
+                            size_hint: 0.8, 0.95
+                            text: 'Total:'
+                            font_size: 20
+                            bold: True
+
+                    MDFloatLayout:
+                        size_hint: 1, 0.48
+                        pos_hint: {'top': 0.725, 'center_x': 0.5}
+                    
+                        MDTextField:
+                            id: _cash_amount
+                            hint_text: "Enter Cash amount"
+                            hint_text_color_normal: [0, 0, 0, 1]
+                            line_color_normal: 
+                            pos_hint:{'center_x': 0.5, 'top': 0.98}
+                            size_hint_x: 0.8
+                            halign: 'center'
+
+                        MDRaisedButton:
+                            text: "Get balance"
+                            pos_hint:{'center_x': 0.5, 'top': 0.4}
+                            md_bg_color: [0, 0, 0, 1]
+                            on_release: app.get_balance()
+
+                    MDFloatLayout:
+                        size_hint: 1, 0.25
+                        pos_hint: {'top': 0.26, 'center_x': 0.5}
+
+                        MDLabel:
+                            id: _balance
+                            pos_hint: {'center_y': 0.5, 'center_x': 0.5}
+                            size_hint: 0.8, 0.95
+                            text: 'Balance: 0.0'
+                            font_size: 20
+                            bold: True
+
+
+                MDFloatLayout:
+                    id: _sale_details
+                    size_hint: 1, 0.6
+                    pos_hint: {'top': 0.6, 'x': 0}
+                    md_bg_color: [1, 1, 1, 1]
+
+                    MDLabel:
+                        id: _sale_details_text
+                        size_hint: 0.8, 0.8
+                        font_size: "14sp"
+                        bold: True
+                        text: "maneno"
+                        pos_hint: {'center_y': 0.5, 'center_x': 0.5}
+
+    NavBar:
+        one: [1, 1, 1, 1]
+
+
+<Butt@MCard>
+    spacing: 15
+    radius: self.height / 10
+    pos_hint: {'center_x': .5}
+    size_hint: None, None
+    width: 180
+    height: 40

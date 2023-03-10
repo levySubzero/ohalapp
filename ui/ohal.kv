@@ -1,0 +1,30 @@
+<HomeScreen>:
+
+    MDFloatLayout:
+        size_hint: 1, 1
+        md_bg_color: [0, 0, 0, 1]
+
+        MCard:
+            id: _bar
+            padding: [20, 0, 0, 0]
+            size_hint: 1, 0.1
+            pos_hint: {'top': 1, 'x': 0}
+            md_bg_color: app.nav_color
+
+            MDLabel:
+                text: 'Home'
+                halign: 'center'
+                adaptive_size: True
+                height: _bar.height
+                font_size: 24
+                text_color: [1, 1, 1, 1]
+
+        MCard:
+            padding: 16
+            size_hint: 1, 0.795
+            pos_hint: {'top': 0.895, 'x': 0}
+            md_bg_color: [1, 0.99, 0.98, 0.94]
+
+
+    NavBar:
+        one: [1, 1, 1, 1]

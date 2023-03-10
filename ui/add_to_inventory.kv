@@ -1,0 +1,142 @@
+<AddInventoryScreen>:
+
+    MDFloatLayout:
+        size_hint: 1, 1
+        md_bg_color: [0, 0, 0, 1]
+
+        MCard:
+            id: _bar
+            padding: [0, 0, 0, 0]
+            size_hint: 1, 0.1
+            pos_hint: {'top': 1, 'x': 0}
+            md_bg_color: app.nav_color
+
+            MDIconButton:
+                icon: 'arrow-left'
+                theme_text_color: 'Custom'
+                text_color: app.theme_cls.opposite_bg_normal
+                user_font_size: 18
+                adaptive_size: True
+                size: 30, 30
+                padding: 0
+                pos_hint: {'center_y':.5, 'x': 0}
+                on_press: app.win_man.switch_to(app.screens[6])
+
+            MDLabel:
+                text: 'Enter new Product details'
+                halign: 'left'
+                adaptive_size: True
+                height: _bar.height
+                font_size: 24
+
+        MCard:
+            id: _mc
+            size_hint: 1, 0.795
+            pos_hint: {'top': 0.895, 'x': 0}
+            padding: "22dp", 0, 0, 0
+            md_bg_color: [1, 0.99, 0.98, 0.94]
+
+            ScrollView:
+                MDStackLayout:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    # orientation: 'vertical'
+                    pos_hint: {'top': 1}
+                    padding: "22dp", 0, 0, 0
+                    spacing: 5
+
+                    MDTextField:
+                        id: _category
+                        hint_text: "Enter new In-stock value"
+                        hint_text_color_normal: [0, 0, 0, 1]
+                        line_color_normal: [0, 0, 0, 1]
+                        hint_text: "Enter new In-stock value"
+                        hint_text_color_normal: [0, 0, 0, 1]
+                        line_color_normal: [0, 0, 0, 1]
+                        pos_hint:{'center_x': 0.5}
+                        hint_text: "Enter Category"
+                        helper_text: "PRODUCTS are grouped in CATEGORIES"
+                        helper_text_mode: "on_focus"
+                        size_hint_x: 0.8
+
+                    MDTextField:
+                        id: _item_name
+                        hint_text: "Enter new In-stock value"
+                        hint_text_color_normal: [0, 0, 0, 1]
+                        line_color_normal: [0, 0, 0, 1]
+                        hint_text: "Enter new In-stock value"
+                        hint_text_color_normal: [0, 0, 0, 1]
+                        line_color_normal: [0, 0, 0, 1]
+                        pos_hint:{'center_x': 0.5}
+                        hint_text: "Enter Item Name"
+                        helper_text: "Actual NAME of the PRODUCT"
+                        helper_text_mode: "on_focus"
+                        size_hint_x: 0.8
+
+                    MDTextField:
+                        id: _price
+                        hint_text: "Enter new In-stock value"
+                        hint_text_color_normal: [0, 0, 0, 1]
+                        line_color_normal: [0, 0, 0, 1]
+                        hint_text: "Enter new In-stock value"
+                        hint_text_color_normal: [0, 0, 0, 1]
+                        line_color_normal: [0, 0, 0, 1]
+                        pos_hint:{'center_x': 0.5}
+                        hint_text: "Enter Price"
+                        helper_text: "SELLING PRICE of the Product"
+                        helper_text_mode: "on_focus"
+                        size_hint_x: 0.8
+
+                    MDTextField:
+                        id: _instock
+                        hint_text: "Enter new In-stock value"
+                        hint_text_color_normal: [0, 0, 0, 1]
+                        line_color_normal: [0, 0, 0, 1]
+                        hint_text: "Enter new In-stock value"
+                        hint_text_color_normal: [0, 0, 0, 1]
+                        line_color_normal: [0, 0, 0, 1]
+                        pos_hint:{'center_x': 0.5}
+                        hint_text: "Enter in-stock value"
+                        helper_text: "Number of PRODUCTS available In stock"
+                        helper_text_mode: "on_focus"
+                        size_hint_x: 0.8
+
+                    MDTextField:
+                        id: _lowstock
+                        hint_text: "Enter new In-stock value"
+                        hint_text_color_normal: [0, 0, 0, 1]
+                        line_color_normal: [0, 0, 0, 1]
+                        hint_text: "Enter new In-stock value"
+                        hint_text_color_normal: [0, 0, 0, 1]
+                        line_color_normal: [0, 0, 0, 1]
+                        pos_hint:{'center_x': 0.5}
+                        hint_text: "Enter stock low value"
+                        helper_text: "Number to determine if PRODUCT is running low in STOCK"
+                        helper_text_mode: "on_focus"
+                        size_hint_x: 0.8
+
+                    MDTextField:
+                        id: _buying_price
+                        hint_text: "Enter new In-stock value"
+                        hint_text_color_normal: [0, 0, 0, 1]
+                        line_color_normal: [0, 0, 0, 1]
+                        hint_text: "Enter new In-stock value"
+                        hint_text_color_normal: [0, 0, 0, 1]
+                        line_color_normal: [0, 0, 0, 1]
+                        pos_hint:{'center_x': 0.5}
+                        hint_text: "Enter Buying Price"
+                        helper_text: "BUYING PRICE of a single PRODUCT"
+                        helper_text_mode: "on_focus"
+                        size_hint_x: 0.8
+                    
+                    MDFillRoundFlatButton:
+                        text: 'Save'
+                        text_color: [1, 1, 1, 1]
+                        pos_hint: {'center_x': 0.5}
+                        padding: "22dp", 0, 0, 0
+                        size_hint_x: 0.55
+                        on_release: app.expand_stock()
+
+
+        NavBar:
+            one: [1, 1, 1, 1]
