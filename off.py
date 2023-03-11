@@ -13,43 +13,37 @@ c = conn.cursor()
 # )
 # ms_cursor = ms_db.cursor()
 
-TABLES0 = {'inventory0': ("""CREATE TABLE IF NOT EXISTS inventory0(
-            category TEXT,
-            brand TEXT,
-            price REAL,
-            in_stock INTEGER,
-            low_value INTEGER,
-            buying_price INTEGER
-            )"""), 
-            'sales0': ("""CREATE TABLE IF NOT EXISTS sales0(
-            r_id INTEGER,
-            brand TEXT,
-            price REAL,
-            quantity REAL,
-            tot_price REAL,
-            da_te TEXT,
-            ti_me TEXT,
-            payment TEXT
-            )""")}  # for local db
+# TABLES0 = {'inventory0': ("""CREATE TABLE IF NOT EXISTS inventory0(
+#             category TEXT,
+#             brand TEXT,
+#             price REAL,
+#             in_stock INTEGER,
+#             low_value INTEGER,
+#             buying_price INTEGER
+#             )"""), 
+#             'sales0': ("""CREATE TABLE IF NOT EXISTS sales0(
+#             r_id INTEGER,
+#             brand TEXT,
+#             price REAL,
+#             quantity REAL,
+#             tot_price REAL,
+#             da_te TEXT,
+#             ti_me TEXT,
+#             payment TEXT
+#             )""")}  # for local db
 
 
 class User:
 
-    # def __init__(self, biz_id, username, phone, email, password):
-    #     self.biz_id = biz_id
-    #     self.username = username
-    #     self.phone = phone
-    #     self.email = email
-    #     self.password = password
-    #     self.inventory_table_name = 'inventory' + f'_{biz_id}-{username}'
-    #     self.sales_table_name = 'sales' + f'_{biz_id}-{username}'
-    #     self.add()
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+        self.add()
 
     def add(self):
         # sqlite3 local db
 
-        # vals = (self.biz_id, self.username, self.phone, self.email, self.password,
-        #         self.inventory_table_name, self.sales_table_name)
+        vals = (self.username, self.password)
 
         sqlt1 = ("""CREATE TABLE IF NOT EXISTS inventory0(
             category TEXT,
@@ -75,12 +69,15 @@ class User:
         for table in tables0:
             c.execute(table)
 
-        # c.execute("INSERT INTO user_data VALUES(?, ?, ?, ?, ?, ?, ?)", vals)
-        # c.execute("SELECT * FROM user_data")
+        c.execute("INSERT INTO users VALUES(?, ?)", vals)
         # k = c.fetchall()
         # for i in k:
         #     print(k)
         conn.commit()
+
+    @staticmethod
+    def clear_records():
+        c.execute('DELETE FROM users')
 
         class online():
             ...
@@ -125,9 +122,16 @@ class User:
 
     @staticmethod
     def details():
-        c.execute("SELECT * FROM user_data")
+        c.execute("SELECT * FROM users")
         dets = c.fetchall()
         return dets
+    
+    @staticmethod
+    def login(tup):
+        # tup = (username, password)
+        c.execute("SELECT * FROM users WHERE username = ? AND password = ?", tup)
+        print(details := c.fetchone())
+        return details
 
 class Item:
 
@@ -342,22 +346,23 @@ def sell(dtls, quantity, total_price, payment):
 
 
 with conn:
-    c.execute("""CREATE TABLE IF NOT EXISTS user_data(
-                biz_id TEXT,
+    c.execute("""CREATE TABLE IF NOT EXISTS users(
                 username TEXT,
-                phone TEXT,
-                email TEXT,
-                password TEXT,
-                inventory_table TEXT,
-                sales_table TEXT
+                password TEXT
                 )""")
 
-# def dy():
-#     for i in Item.search((0, 0, 0)):
-#         print(i)
-# dy()
-# Item.remove((2, 300.0, 'cocacola'))
-# dy()
+# User.clear_records()
+
+# fst = User('levy', '34RAZOR')
+
+# k = User.login(('levy', '34'))
+
+# if k:
+#     print(k)
+#     print(type(k))
+# else:
+#     print('kuma bana')
+
 
 
 # sell(dets, 2)

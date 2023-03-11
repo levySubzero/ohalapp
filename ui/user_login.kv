@@ -1,0 +1,55 @@
+<LoginScreen>:
+    name: "login"
+    AnchorLayout:
+        GridLayout:
+            rows: 3
+            size_hint: .5,.5
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: dp(10)
+                MDTextField:
+                    id: _user_name
+                    hint_text: "Username"
+                    write_tab: False
+                    required: True
+                    icon_right: "account"
+                    helper_text_mode: "on_error"
+                    helper_text: "This field is required"
+
+
+                MDTextField:
+                    id: _password
+                    hint_text: "Password"
+                    write_tab: False
+                    required: True
+                    icon_right: "key"
+                    password: True
+                    helper_text_mode: "on_error"
+                    helper_text: "This field is required"
+
+            MDRoundFlatButton:
+                id: login_btn
+                size_hint: .2, None
+                text: "Login"
+                on_press:
+                    root.user_login()
+                on_release:
+
+            MDBoxLayout:
+                MDLabel:
+                    halign: "left"
+                    text: "Don't have an account ?"
+
+                MDFlatButton:
+                    text: "Register"
+                    halign: "left"
+                    on_release:
+                        app.root.current = "register"
+                        root.manager.transition.direction = 'right'
+
+
+
+#<UserProfile>:
+
+
+

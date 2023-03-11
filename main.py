@@ -24,7 +24,11 @@ __version__ = '1.0'
 
 Window.size = (700, 600)
 
+global AUTH
+AUTH = 0
+
 Builder.load_file('./ui/user_data.kv')
+Builder.load_file('./ui/user_login.kv')
 Builder.load_file('./ui/sell_main.kv')
 Builder.load_file('./ui/sell_brands.kv')
 Builder.load_file('./ui/view_cart.kv')
@@ -229,12 +233,12 @@ class OhalApp(MDApp):
             StockUpdateScreen(name='stock_update')   #16
         ]
 
-        print(off.User.details())
-        # if off.User.details() == []:
-        #     self.win_man.switch_to(self.screens[11])
+        # print(off.User.details())
+        if off.User.details() == []:
+            self.win_man.switch_to(self.screens[11])
 
-        # else:
-        #     self.win_man.switch_to(self.screens[0])
+        else:
+            self.sell_press()
 
         self.sell_press()
         return self.win_man
@@ -1379,24 +1383,95 @@ class OhalApp(MDApp):
 
         self.payment = c
 
-    def details_account(self):
+    def logins(self):
+        self.win_man.switch_to(self.screens[12])
 
-        self.biz_id = self.screens[11].ids['_biz_id'].text
+    def user_login(self):
+        user_name = self.screens[12].ids['_user_name'].text
+        password = self.screens[12].ids['_password'].text
+
+        self.wrong_details = MDDialog(  
+            title="No account found, retry",
+            type="custom",
+            buttons=[
+                MDFlatButton(
+                    text='Retry',
+                    theme_text_color="Custom",
+                    text_color=self.theme_cls.primary_color,
+                    on_release=lambda d=self: self.pass_match_dialog.dismiss()
+                )
+            ]
+        )
+
+        self.login_success = MDDialog(  
+            title=f"Logged in as {user_name}",
+            type="custom",
+            buttons=[
+                MDFlatButton(
+                    text='OK',
+                    theme_text_color="Custom",
+                    text_color=self.theme_cls.primary_color,
+                    on_release=lambda : logged()
+                )
+            ]
+        )
+
+        def logged():
+            self.win_man.switch_to(self.screens[6])
+            self.login_success.dismiss()
+
+        details = [self.user_name, self.password]
+        empty_fields = []
+        for j in details:
+            if j == '':
+                empty_fields.append(j)
+            else:
+                pass
+
+        if len(empty_fields) > 0:
+            self.all_fields_dialog = MDDialog(  # select payment method and confirm transaction o direct sales
+                title='Fill all fields',
+                type="custom",
+                buttons=[
+                    MDFlatButton(
+                        text='OK',
+                        theme_text_color="Custom",
+                        text_color=self.theme_cls.primary_color,
+                        on_release=lambda d=self: self.all_fields_dialog.dismiss()
+                    )
+                ]
+            )
+
+            self.all_fields_dialog.open()
+            
+        else:
+            user_found = off.User.login((user_name, password))
+            if user_found:
+                AUTH = 1
+                LOGGED_IN_USER = f'{user_name}'
+                self.login_success.open()
+            else:
+                self.wrong_details.open()
+
+
+    def logout(self):
+        AUTH = 0
+        LOGGED_IN_USER = ''
+        self.win_man.switch_to(self.screens[12])
+
+    def register_account(self):
+
         self.user_name = self.screens[11].ids['_user_name'].text
-        self.phone_no = self.screens[11].ids['_phone_no'].text
-        self.email = self.screens[11].ids['_email'].text
         self.password = self.screens[11].ids['_password'].text
         self.con_password = self.screens[11].ids['_con_password'].text
 
-        details = [self.biz_id, self.user_name, self.phone_no, self.phone_no, self.email, self.password,
-                   self.con_password]
+        details = [self.user_name, self.password, self.con_password]
 
         empty_fields = []
 
         for j in details:
             if j == '':
                 empty_fields.append(j)
-
             else:
                 pass
 
@@ -1418,7 +1493,7 @@ class OhalApp(MDApp):
 
         elif self.password != self.con_password:
 
-            self.pass_match_dialog = MDDialog(  # select payment method and confirm transaction o direct sales
+            self.pass_match_dialog = MDDialog(  
                 title="Passwords don't match",
                 type="custom",
                 buttons=[
@@ -1435,7 +1510,7 @@ class OhalApp(MDApp):
 
         else:
             self.create_account_dialog = MDDialog(  # select payment method and confirm transaction o direct sales
-                title=f'{self.user_name} Create account for {self.biz_id}',
+                title=f'Create account for {self.user_name} ',
                 type="custom",
                 buttons=[
                     MDFlatButton(
@@ -1456,7 +1531,7 @@ class OhalApp(MDApp):
 
     def create_account(self, instance_table):
         self.create_account_dialog.dismiss()
-        off.User(self.biz_id, self.user_name, self.phone_no, self.email, self.password)
+        off.User(self.user_name, self.password)
         self.account_created_dialog = MDDialog(  # select payment method and confirm transaction o direct sales
             title=f'Account created successfully',
             type="custom",
@@ -1470,7 +1545,7 @@ class OhalApp(MDApp):
         )
         self.account_created_dialog.open()
 
-        self.win_man.switch_to(self.screens[0])
+        self.win_man.switch_to(self.screens[12])
 
 
 if __name__ == "__main__":

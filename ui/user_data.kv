@@ -25,44 +25,10 @@
                     color: app.theme_cls.opposite_bg_normal
 
                 MDTextField:
-                    id: _biz_id
-                    hint_text: "Business name"
-                    required: True
-                    icon_right: "account-box"
-                    write_tab: False
-                    helper_text_mode: "on_error"
-                    helper_text: "This field is required"
-                    on_text_validate:
-
-
-
-                MDTextField:
                     id: _user_name
                     hint_text: "Username"
                     required: True
                     icon_right: "account"
-                    write_tab: False
-                    helper_text_mode: "on_error"
-                    helper_text: "This field is required"
-                    on_text_validate:
-
-
-                MDTextField:
-                    id: _phone_no
-                    hint_text: "Phone number"
-                    required: True
-                    icon_right: "phone"
-                    write_tab: False
-                    helper_text_mode: "on_error"
-                    helper_text: "This field is required"
-                    on_text_validate:
-
-
-                MDTextField:
-                    id: _email
-                    hint_text: "Email"
-                    required: True
-                    icon_right: "email"
                     write_tab: False
                     helper_text_mode: "on_error"
                     helper_text: "This field is required"
@@ -99,6 +65,6 @@
             pos_hint: {'center_x': .5, 'center_y': 0.3}
             disabled: not _password.text == _con_password.text
             on_release:
-                app.details_account()
+                app.register_account()
 
 

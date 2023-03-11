@@ -18,6 +18,22 @@
                 height: _bar.height
                 font_size: 24
 
+            MDFloatLayout:
+
+                MDRaisedButton:
+                    id: _cart_butt
+                    text: 'LOGOUT'
+                    halign: 'right'
+                    adaptive_size: True
+                    #size_hint: 1, 1
+                    #size_hint_x: None
+                    #height: 30
+                    #width: 40
+                    pos_hint: {'right': 1, 'center_y': .5}
+                    font_size: 20
+                    md_bg_color: [1, 0, 0, 1]
+                    on_press: app.logout
+
         MCard:
             id: _mc
             size_hint: 1, 0.795
